@@ -1,0 +1,346 @@
+:root {
+  --fondo: #f1ede3;
+  --texto: #34312c;
+  --suave: #6f695d;
+  --linea: #cfc8b8;
+  --acento: #4f6d7a;
+  --tarjeta: #e7e1d3;
+ 
+  --titulos: Georgia, "Times New Roman", serif;
+  --manuscrita: "Segoe Print", "Bradley Hand", "Comic Sans MS", cursive;
+ 
+  /* Margen lateral que se adapta al ancho de la pantalla */
+  --margen: clamp(1rem, 5vw, 3rem);
+}
+ 
+/* ---------- Base ---------- */
+* {
+  box-sizing: border-box;
+}
+ 
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: var(--fondo);
+  color: var(--texto);
+  font-family: system-ui, sans-serif;
+  line-height: 1.6;
+}
+ 
+main {
+  flex: 1; /* empuja el footer hacia abajo aunque haya poco contenido */
+}
+ 
+a {
+  color: var(--texto);
+  text-decoration: none;
+}
+ 
+:focus-visible {
+  outline: 2px solid var(--acento);
+  outline-offset: 3px;
+}
+ 
+/* ---------- Header ---------- */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem var(--margen);
+  border-bottom: 1.5px solid var(--linea);
+}
+ 
+.logo {
+  font-family: var(--manuscrita);
+  font-size: 1.5rem;
+}
+ 
+nav ul {
+  display: flex;
+  gap: 1.5rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+ 
+nav a {
+  color: var(--suave);
+  padding-bottom: 0.2rem;
+  border-bottom: 2px solid transparent;
+}
+ 
+nav a:hover,
+nav a[aria-current="page"] {
+  color: var(--texto);
+  border-bottom-color: var(--acento);
+}
+ 
+/* ---------- Portada ---------- */
+.hero {
+  max-width: 62rem;
+  padding: clamp(2rem, 6vw, 4.5rem) var(--margen) 1rem;
+}
+ 
+h1 {
+  margin: 0 0 1rem;
+  font-family: var(--titulos);
+  font-size: clamp(2.2rem, 7vw, 4.5rem);
+  line-height: 1.05;
+}
+ 
+.hero p {
+  max-width: 34rem;
+  margin: 0;
+  color: var(--suave);
+}
+ 
+/* ---------- Carrusel ---------- */
+.carrusel {
+  display: flex;
+  gap: 1.25rem;
+  padding: 1.5rem var(--margen);
+  overflow-x: auto;                 /* permite deslizar de lado */
+  scroll-snap-type: x mandatory;    /* cada foto "encaja" al deslizar */
+  scroll-padding-left: var(--margen);
+  scrollbar-width: none;            /* oculta la barra en Firefox */
+}
+ 
+.carrusel::-webkit-scrollbar {
+  display: none;                    /* oculta la barra en Chrome y Safari */
+}
+ 
+@media (prefers-reduced-motion: no-preference) {
+  .carrusel {
+    scroll-behavior: smooth;        /* animación suave, si el usuario la permite */
+  }
+}
+ 
+.carrusel figure {
+  flex: 0 0 min(78vw, 22rem);       /* ancho fijo de cada foto */
+  margin: 0;
+  scroll-snap-align: start;
+}
+ 
+.carrusel img,
+.sobre-mi img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 5;              /* formato vertical */
+  object-fit: cover;                /* recorta sin deformar */
+  background: var(--tarjeta);
+  border: 1.5px solid var(--texto);
+  border-radius: 3px 6px 4px 7px / 6px 3px 7px 4px;  /* esquinas "dibujadas a mano" */
+  box-shadow: 4px 5px 0 var(--linea);
+}
+ 
+figcaption {
+  padding-top: 0.8rem;
+  font-family: var(--manuscrita);
+  font-size: 1.1rem;
+}
+ 
+/* ---------- Botones del carrusel ---------- */
+.controles {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0 var(--margen) 3rem;
+}
+ 
+.controles button {
+  width: 2.75rem;
+  height: 2.75rem;
+  border: 1px solid var(--texto);
+  border-radius: 50%;
+  background: transparent;
+  color: var(--texto);
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+ 
+.controles button:hover {
+  background: var(--texto);
+  color: var(--fondo);
+}
+ 
+#contador {
+  margin-left: 0.5rem;
+  color: var(--suave);
+  font-variant-numeric: tabular-nums;
+}
+ 
+/* ---------- Página Sobre mí ---------- */
+.sobre-mi {
+  display: grid;
+  grid-template-columns: 1fr;       /* una columna en el celular */
+  gap: 2rem;
+  max-width: 62rem;
+  padding: clamp(2rem, 6vw, 4.5rem) var(--margen);
+}
+ 
+.sobre-mi img {
+  max-width: 22rem;
+}
+ 
+.sobre-mi h1 {
+  font-size: clamp(2rem, 5vw, 3rem);
+}
+ 
+.sobre-mi p {
+  max-width: 36rem;
+  margin: 0 0 1rem;
+}
+ 
+.boton {
+  display: inline-block;
+  padding: 0.7rem 1.4rem;
+  background: var(--texto);
+  color: var(--fondo);
+}
+ 
+.boton:hover {
+  background: var(--acento);
+}
+ 
+/* Pantallas medianas y grandes: foto a la izquierda, texto a la derecha */
+@media (min-width: 760px) {
+  .sobre-mi {
+    grid-template-columns: 20rem 1fr;
+    gap: 3.5rem;
+  }
+}
+ 
+/* ---------- Footer ---------- */
+footer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1.5rem var(--margen);
+  border-top: 1.5px solid var(--linea);
+  color: var(--suave);
+  font-size: 0.9rem;
+}
+ 
+footer p {
+  margin: 0;
+}
+ 
+footer a {
+  color: var(--suave);
+}
+ 
+footer a:hover {
+  color: var(--texto);
+}
+/* ---------- Página Pedidos ---------- */
+.pagina {
+  max-width: 52rem;
+  padding: clamp(2rem, 6vw, 4rem) var(--margen);
+}
+
+.pagina h2 {
+  margin: 0 0 0.5rem;
+  font-family: var(--titulos);
+  font-size: 1.4rem;
+}
+
+.pagina section {
+  margin-top: 3rem;
+}
+
+.intro {
+  color: var(--suave);
+}
+
+/* Pasos numerados */
+.pasos {
+  display: grid;
+  gap: 1.5rem;
+  margin: 2rem 0 0;
+  padding: 0;
+  list-style: none;
+  counter-reset: paso;              /* empieza a contar desde 0 */
+}
+
+.pasos li {
+  position: relative;
+  padding-left: 3.5rem;
+  counter-increment: paso;          /* suma 1 en cada paso */
+}
+
+.pasos li::before {
+  content: counter(paso);           /* escribe el número */
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 2.5rem;
+  height: 2.5rem;
+  display: grid;
+  place-items: center;
+  border: 1.5px solid var(--texto);
+  border-radius: 50%;
+  font-family: var(--manuscrita);
+  font-size: 1.2rem;
+}
+
+.pasos h2,
+.pasos p {
+  margin: 0;
+}
+
+.pasos h2 {
+  font-size: 1.15rem;
+}
+
+.pasos p {
+  color: var(--suave);
+}
+
+/* Tamaños */
+.tamanos {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
+  gap: 1rem;
+  margin: 1rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.tamanos li {
+  padding: 1.25rem;
+  background: var(--tarjeta);
+  border: 1.5px solid var(--texto);
+  border-radius: 3px 6px 4px 7px / 6px 3px 7px 4px;
+  box-shadow: 4px 5px 0 var(--linea);
+}
+
+.tamanos h3 {
+  margin: 0;
+  font-family: var(--manuscrita);
+  font-size: 1.6rem;
+}
+
+.tamanos p {
+  margin: 0;
+  color: var(--suave);
+}
+
+.tamanos .precio {
+  margin-top: 0.5rem;
+  color: var(--texto);
+  font-weight: 600;
+}
+
+.nota {
+  margin-top: 1rem;
+  color: var(--suave);
+  font-size: 0.9rem;
+}
+
+.consejos {
+  padding-left: 1.25rem;
+}

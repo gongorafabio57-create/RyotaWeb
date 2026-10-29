@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Retratos de mascotas</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script src="script.js" defer></script>
+  </head>
+  <body>
+    <header>
+      <a class="logo" href="index.html">Nombre y Apellido</a>
+      <nav>
+        <ul>
+          <li><a href="index.html" aria-current="page">Inicio</a></li>
+          <li><a href="AboutMe.html">Sobre mí</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main id="inicio">
+      <div class="hero">
+        <h1>Retratos de mascotas</h1>
+        <p>
+          Cada mascota tiene su carácter, y un buen retrato lo cuenta. Desliza
+          para conocer a algunas de ellas.
+        </p>
+      </div>
+
+      <section
+        id="carrusel"
+        class="carrusel"
+        tabindex="0"
+        aria-label="Galería de retratos"
+      >
+        <figure>
+          <img src="img/1.jpg" alt="Retrato de Luna, una gata atigrada" />
+          <figcaption>Luna, gata atigrada</figcaption>
+        </figure>
+        <figure>
+          <img src="img/2.jpg" alt="Retrato de Toby, un golden retriever" />
+          <figcaption>Toby, golden retriever</figcaption>
+        </figure>
+        <figure>
+          <img src="img/3.jpg" alt="Retrato de Mora, una gata negra" />
+          <figcaption>Mora, gata negra</figcaption>
+        </figure>
+        <figure>
+          <img src="img/4.jpg" alt="Retrato de Rocco, un bulldog francés" />
+          <figcaption>Rocco, bulldog francés</figcaption>
+        </figure>
+        <figure>
+          <img src="img/5.jpg" alt="Retrato de Nina, una perrita mestiza" />
+          <figcaption>Nina, mestiza juguetona</figcaption>
+        </figure>
+      </section>
+
+      <div class="controles">
+        <button id="anterior" type="button" aria-label="Retrato anterior">
+          ←
+        </button>
+        <button id="siguiente" type="button" aria-label="Retrato siguiente">
+          →
+        </button>
+        <span id="contador" aria-live="polite"></span>
+      </div>
+    </main>
+
+    <footer>
+      <p>© 2026 Nombre y Apellido. Todos los derechos reservados.</p>
+      <a href="mailto:correo@ejemplo.com">correo@ejemplo.com</a>
+    </footer>
+  </body>
+</html>
